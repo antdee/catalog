@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ restaurant.name }}</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+        	<a href="{{url_for('showRestaurants')}}">Home</a>
+			<h1>{{ restaurant.name }} Menu</h1>
+			<div class = 'flash'>
+				{% with messages = get_flashed_messages() %}
+				    {% if messages %}    
+					    <ul>
+						    {% for message in messages %}
+						    	<li><strong> {{ message }} </strong></li>
+						    {% endfor %}
+					    </ul>
+				    {% endif %}
+			    {% endwith %}
+			</div>
+			<a href="{{url_for('newMenuItem', restaurant_id=restaurant_id)}}">Add New ITEM!</a>
+        </div>
+    </div>
+    {% for i in items %}
+	    <div class="row">
+	        <div class="col-xs-12">
+	        	{{i.name}}
+				{{i.description}}
+				{{i.price}}
+				{{i.course}}
+				{{i.id}}
+	        </div>
+	        <div class="col-xs-12">
+	        	<a href="{{url_for('editMenuItem', restaurant_id=restaurant_id, menu_id=i.id)}}">Edit</a>
+				<a href="{{url_for('deleteMenuItem', restaurant_id=restaurant_id, menu_id=i.id)}}">Delete</a>
+			</div>
+	    </div>
+	{% endfor %}
+</div>
+</body>
+</html>

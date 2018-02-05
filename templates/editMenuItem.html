@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ itemToEdit.name }}</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+        	<a href="{{url_for('showMenu', restaurant_id=restaurant_id)}}">Back to  Menu</a>
+			<a href="{{url_for('showRestaurants')}}">Home</a>
+			<h1>Edit {{ itemToEdit.name }}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+        	<form action="{{url_for('editMenuItem', restaurant_id=restaurant_id, menu_id=menu_id)}}" method = 'post'>
+				<dl>
+					<dt>Name:</dt>
+						<dd><input type="text" size = '30' name="name" value="{{ itemToEdit.name }}"></dd>
+					<dt>Description:</dt>
+						<dd><input type="text" size = '30' name="description" value="{{ itemToEdit.description }}"></dd>
+					<dt>Price:</dt>
+						<dd><input type="text" size = '30' name="price" value="{{ itemToEdit.price }}"></dd>
+					<select name="course">
+						<option value="Appetizer">Appetizer</option>
+						<option value="Entree">Entree</option>
+						<option value="Dessert">Dessert</option>
+						<option value="Beverage">Beverage</option>
+					</select>
+				</dl>
+				<input type="submit" name="Create" value="Edit">
+			</form>
+		</div>
+    </div>
+</div>
+</body>
+</html>
